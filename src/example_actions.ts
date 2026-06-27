@@ -1,28 +1,24 @@
 import * as vscode from 'vscode';
 import { Globals } from './globals';
-import { RCEAction, RCEContext, RCEHandlerReturns } from '@vsc-neuropilot/api-types';
+import { RCEContext, RCEHandlerReturns } from '@vsc-neuropilot/api-types';
+import { defineAction } from '@vsc-neuropilot/api-types/utils';
+import z from 'zod';
 
 const CATEGORY_EXAMPLE = 'Template Example';
 
 // Example action. This is only here for demonstration purposes, and should not be removed by the time the extension is published.
 export const exampleActions = {
-    hello: {
+    hello: defineAction({
         name: 'hello',
         // ${userName} is a special placeholder that will be replaced with the name of the operator (e.g. Vedal).
         // Can also be used in schema descriptions.
         description: 'Show a "Hello World" message to ${userName}.',
         category: CATEGORY_EXAMPLE,
         // The schema is used to validate the input data, so you can use the fields in later functions without type checking.
-        schema: {
-            type: 'object',
-            properties: {
-                name: {
-                    type: 'string',
-                },
-            },
-            required: ['name'],
-        },
-        contextSetupHooks: [
+        schema: z.object({
+            name: z.string()
+        }),
+        contextSetupHook: [
             async (context) => {
                 // Use storage to avoid fetching a value multiple times across different lifecycle stages
                 context.storage.ownName = Globals.api.config.nameOfAPI.value;
@@ -57,8 +53,8 @@ export const exampleActions = {
         },
         promptGenerator: (context) => `greet ${context.data.params.name}.`,
         handler: helloHandler,
-    },
-} satisfies Record<string, RCEAction>;
+    }),
+};
 
 export function addExampleActions() {
     Globals.companion.addActions([
@@ -66,10 +62,10 @@ export function addExampleActions() {
     ]);
 }
 
-function helloHandler(context: RCEContext): RCEHandlerReturns {
+function helloHandler(context: RCEContext<{ name: string; }>): RCEHandlerReturns {
     // Get the "name" property from the JSON object that Neuro returned.
     // You don't need to type check here, as the object is validated against the schema before it is passed to the handler.
-    const name: string = context.data.params.name;
+    const name: string = context.data.params!.name;
 
     // Get the name previously saved to storage in the context setup hook
     const ownName = context.storage.ownName as string;
