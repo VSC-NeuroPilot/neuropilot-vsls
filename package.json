@@ -28,7 +28,7 @@
 		"build:esbuild": "node ./scripts/esbuild.mjs",
 		"watch": "npm-run-all -p watch:*",
 		"watch:tsc": "tsc -watch -p ./",
-		"watch:esbuild": "node./scripts/esuild.mjs",
+		"watch:esbuild": "node./scripts/esbuild.mjs",
 		"lint": "eslint src",
 		"test": "vscode-test",
 		"package": "vsce package --no-dependencies"
@@ -50,6 +50,7 @@
 	},
 	"dependencies": {
 		"@vsc-neuropilot/api-types": "1.0.0-pre.14",
+		"@vsc-neuropilot/vsls-redux": "^0.0.0",
 		"zod": "^4.4.3"
 	}
 }
