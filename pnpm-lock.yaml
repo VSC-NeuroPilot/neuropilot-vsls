@@ -8,12 +8,18 @@ importers:
 
   .:
     dependencies:
+      '@reduxjs/toolkit':
+        specifier: ^2.12.0
+        version: 2.12.0
       '@vsc-neuropilot/api-types':
-        specifier: 1.0.0-pre.14
-        version: 1.0.0-pre.14(@types/vscode@1.125.0)
+        specifier: 1.0.0-pre.17
+        version: 1.0.0-pre.17(@types/vscode@1.125.0)
       '@vsc-neuropilot/vsls-redux':
         specifier: ^0.0.0
         version: 0.0.0
+      redux:
+        specifier: ^5.0.1
+        version: 5.0.1
       zod:
         specifier: ^4.4.3
         version: 4.4.3
@@ -383,8 +389,8 @@ packages:
     resolution: {integrity: sha512-CY3uyFSRbcQv3nnSv8S0+lDftMVz6P963PoRlxrV7ew/Md564g9ut60PYzdLM5qW4jFn93GBF+Soi90ISAN+GQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@vsc-neuropilot/api-types@1.0.0-pre.14':
-    resolution: {integrity: sha512-SaFTe83Qe1rjKkxdPz1OhDJiFHZ5iXYBz3VcewC240DAu5L5E7wLhQJI8kaeGjytRTxbd7dsugSQBr6+YNEN/g==}
+  '@vsc-neuropilot/api-types@1.0.0-pre.17':
+    resolution: {integrity: sha512-mSiXpaNcp/Vth/9XORqFhzTJcsdXLDAzO0ltEGI6gzoCHFlM++xUm7efKOvyrvHXUk79579EKOIzC7OTtvDkkQ==}
     peerDependencies:
       '@types/vscode': ^1.95.0
 
@@ -1468,7 +1474,7 @@ snapshots:
       '@typescript-eslint/types': 8.62.0
       eslint-visitor-keys: 5.0.1
 
-  '@vsc-neuropilot/api-types@1.0.0-pre.14(@types/vscode@1.125.0)':
+  '@vsc-neuropilot/api-types@1.0.0-pre.17(@types/vscode@1.125.0)':
     dependencies:
       '@standard-schema/spec': 1.1.0
       '@types/json-schema': 7.0.15
