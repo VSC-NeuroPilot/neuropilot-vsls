@@ -1,9 +1,16 @@
 import { NotifyEvents, RequestMethods, serviceName } from "../consts/rpc";
 import { rpc } from "../shared/vsls-client";
 
-const proxy = await rpc?.getSharedService(serviceName);
+export async function setupProxy() {
+    const proxy = await rpc?.getSharedService(serviceName);
 
+    // inform host
+    proxy?.notify(NotifyEvents.GuestJoined, {});
+    const syncState = await proxy?.request(RequestMethods.SyncState, []);
 
-proxy?.notify(NotifyEvents.NewJoiner, {});
+    // setup listeners
+    proxy?.onNotify(NotifyEvents.GuestJoined, (a) => {});
 
-proxy?.request(RequestMethods.StateSync, []);
+    // return proxy object
+    return proxy;
+}

@@ -1,8 +1,13 @@
 export const serviceName = 'neuropilot-vsls';
 
 export const enum RequestMethods {
-    StateSync = 'state-sync',
+    SyncState = 'sync-state',
+    HighlightSnippet = 'highlight-snippet',
 }
+
 export const enum NotifyEvents {
-    NewJoiner = 'new-joiner',
+    GuestJoined = 'guest-joined',
+    GuestLeft = 'guest-left',
+    SyncPreviewEffect = 'sync-preview-effect',
+    DeletePreviewEffect = 'delete-preview-effect',
 }

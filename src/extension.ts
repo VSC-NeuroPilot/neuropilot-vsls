@@ -15,12 +15,16 @@ export async function activate(context: vscode.ExtensionContext) {
     
     // Register a companion with the API
     Globals.companion = new Globals.api.Companion({
-        name: 'Template Companion',
-        author: 'Your name',
+        name: 'NeuroPilot - VS Live Share support',
+        author: 'VSC-NeuroPilot',
         extensionId: context.extension.id,
-        docs: 'https://example.com/docs',
+        docs: 'https://vsc-neuropilot.github.io/docs/vsls',
         contributes: [
             Contributions.ACTIONS_MANAGE,
+            Contributions.CONTEXT,
+            Contributions.ACTIONS_INJECT,
+            Contributions.CURSOR_GET,
+            Contributions.ACTIONS_MANAGE_OTHERS,
         ],
     });
 

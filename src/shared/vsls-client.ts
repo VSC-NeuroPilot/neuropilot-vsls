@@ -1,3 +1,7 @@
 import * as vsls from 'vsls';
 
-export const rpc = await vsls.getApi();
+export let rpc = await vsls.getApi();
+
+export async function reloadRPC() {
+    rpc = await vsls.getApi();
+}
