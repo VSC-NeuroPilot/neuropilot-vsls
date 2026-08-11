@@ -1,6 +1,7 @@
 {
 	"name": "neuropilot-vsls",
 	"displayName": "VSC-NeuroPilot",
+	"type": "module",
 	"description": "Visual Studio Live Share companion forr NeuroPilot",
 	"version": "0.0.1",
 	"engines": {
@@ -53,6 +54,7 @@
 		"@vsc-neuropilot/api-types": "1.0.0-pre.17",
 		"@vsc-neuropilot/vsls-redux": "^0.0.0",
 		"redux": "^5.0.1",
+		"vsls": "^1.0.4753",
 		"zod": "^4.4.3"
 	}
 }

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import { Globals } from './globals';
-import { RCEContext, RCEHandlerReturns } from '@vsc-neuropilot/api-types';
+import { Globals } from './globals.js';
+import type { RCEContext, RCEHandlerReturns } from '@vsc-neuropilot/api-types';
 import { defineAction } from '@vsc-neuropilot/api-types/utils';
 import z from 'zod';
 
@@ -18,7 +18,7 @@ export const exampleActions = {
         schema: z.object({
             name: z.string()
         }),
-        contextSetupHook: [
+        contextSetupHooks: [
             async (context) => {
                 // Use storage to avoid fetching a value multiple times across different lifecycle stages
                 context.storage.ownName = Globals.api.config.nameOfAPI.value;
@@ -42,12 +42,12 @@ export const exampleActions = {
                     const ownName = context.storage.ownName as string;
                     
                     if (context.data.params.name === ownName) {
-                        return Globals.api.utils.actionValidation.retry(
+                        return Globals.api.actionValidation.retry(
                             'You cannot greet yourself.',
                             'Attempted to greet own name.',
                         );
                     }
-                    return Globals.api.utils.actionValidation.success();
+                    return Globals.api.actionValidation.success();
                 },
             ],
         },
@@ -72,7 +72,7 @@ function helloHandler(context: RCEContext<{ name: string; }>): RCEHandlerReturns
 
     vscode.window.showInformationMessage(`Hello, ${name}!`);
 
-    return Globals.api.utils.actionHandler.success(
+    return Globals.api.actionHandler.success(
         `You have greeted ${name}.`,    // What Neuro will see (via context)
         `${ownName} greeted ${name}.`,  // What the user will see (via history)
     );

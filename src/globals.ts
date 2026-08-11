@@ -1,4 +1,4 @@
-import { NeuroPilotAPI, CompanionAPI } from "@vsc-neuropilot/api-types";
+import type { NeuroPilotAPI, CompanionAPI } from "@vsc-neuropilot/api-types";
 import { createVSLS } from "@vsc-neuropilot/vsls-redux";
 
 export class Globals {
