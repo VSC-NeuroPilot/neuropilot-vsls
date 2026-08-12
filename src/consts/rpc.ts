@@ -8,6 +8,7 @@ export const enum RequestMethods {
 export const enum NotifyEvents {
     GuestJoined = 'guest-joined',
     GuestLeft = 'guest-left',
-    SyncPreviewEffect = 'sync-preview-effect',
-    DeletePreviewEffect = 'delete-preview-effect',
+    PreviewEffectSync = 'preview-effect-sync',
+    PreviewEffectRemove = 'preview-effect-remove',
+    CursorMoved = 'cursor-moved',
 }
